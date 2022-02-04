@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+{% if page == 'login' %}
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        <label>Username:</label>
+        <input type="text" name="username" placeholder="Username kiriting" />
+
+        <label>Parol:</label>
+        <input type="password" name="password" placeholder="Parol kiriting" />
+
+        <input type="submit" value="Login" />
+    </form>
+
+    <p>Ro'yxatdan o'tmaganmisiz?</p>
+    <a href="{% url 'register' %}">Ro'yxatdan o'tish</a>
+</div>
+
+{% else %}
+
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Register" />
+    </form>
+    <p>Ro'yxatdan o'tgan?</p>
+    <a href="{% url 'login' %}">Login</a>
+</div>
+{% endif %}
+
+{% endblock content %}
